@@ -1,9 +1,9 @@
 #include <Arduino.h>
-#include <Servo.h>
+#include <ESP32Servo.h>
 
 Servo servo;
-int buttonPin = 7;
-int servoPin = 9;
+int buttonPin = GPIO_NUM_25;
+int servoPin = GPIO_NUM_27;
 bool pressed = false;
 
 // predeclarations
@@ -12,12 +12,9 @@ void check_button();
 
 void setup()
 {
-  // put your setup code here, to run once:
-  pinMode(buttonPin, INPUT_PULLUP);
-  Serial.begin(9600);
-  Serial.println("Initializing servo");
+  // Serial.begin(9600);
+  // Serial.println("Initializing servo");
   servo.attach(servoPin);
-  // initialize pin 7 as high
   pinMode(buttonPin, INPUT_PULLUP);
 }
 
@@ -29,7 +26,7 @@ void loop()
 
 void click()
 {
-  Serial.println("Clicking");
+  // Serial.println("Clicking");
   servo.write(60);
   delay(1000);
   servo.write(90); // Keep this value at 90 as this is neutral position
@@ -39,7 +36,7 @@ void click()
 void check_button()
 {
   int buttonState = digitalRead(buttonPin);
-  Serial.println(buttonState);
+  // Serial.println(buttonState);
   if (pressed && buttonState == HIGH)
   {
     pressed = false;
