@@ -16,6 +16,7 @@ void setup()
   // Serial.println("Initializing servo");
   servo.attach(servoPin);
   pinMode(buttonPin, INPUT_PULLUP);
+  servo.write(90); // reset to neutral to offset startup jitter
 }
 
 void loop()
